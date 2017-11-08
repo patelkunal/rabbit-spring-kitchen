@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:rabbit="http://www.springframework.org/schema/rabbit" xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+                           http://www.springframework.org/schema/rabbit http://www.springframework.org/schema/rabbit/spring-rabbit.xsd">
+
+    <!--<context:component-scan base-package="org.coderearth.rabbitspringkitchen.recipe01"/>-->
+
+    <rabbit:connection-factory id="connectionFactory" host="localhost" username="guest" password="guest"/>
+
+    <rabbit:admin connection-factory="connectionFactory"/>
+
+    <rabbit:queue id="recipe.01.queue" name="recipe01Queue" auto-delete="true" durable="false"/>
+
+    <!--<rabbit:direct-exchange name="recipe.01.exchange" id="recipe01Exchange">-->
+    <!--<rabbit:bindings>-->
+    <!--<rabbit:binding queue="recipe.01.queue"/>-->
+    <!--</rabbit:bindings>-->
+    <!--</rabbit:direct-exchange>-->
+
+    <rabbit:listener-container connection-factory="connectionFactory">
+        <rabbit:listener ref="listener" queue-names="recipe01Queue"/>
+    </rabbit:listener-container>
+
+    <bean id="listener" class="org.coderearth.rabbitspringkitchen.basiclistener.BasicListener"/>
+</beans>

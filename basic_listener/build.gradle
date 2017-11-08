@@ -1,0 +1,17 @@
+apply plugin: 'application'
+
+dependencies {
+    // compile 'org.springframework.boot:spring-boot-starter'
+
+    compile 'org.slf4j:jcl-over-slf4j:1.7.21'
+    compile 'ch.qos.logback:logback-classic:1.1.7'
+
+    compile 'org.springframework:spring-core:5.0.0.RELEASE'
+    compile 'org.springframework:spring-context:5.0.0.RELEASE'
+    compile 'org.springframework:spring-beans:5.0.0.RELEASE'
+
+    compile 'org.springframework.amqp:spring-amqp:2.0.0.RELEASE'
+    compile 'org.springframework.amqp:spring-rabbit:2.0.0.RELEASE'
+}
+
+mainClassName = 'org.coderearth.rabbitspringkitchen.recipe01.Application'

@@ -1,0 +1,43 @@
+task info {
+    doLast {
+        println "========================================================="
+        println "\t project.group = $project.group"
+        println "\t project.name = $project.name"
+        println "\t project.version = $project.version"
+        println "========================================================="
+    }
+}
+
+allprojects {
+    group 'org.coderearth'
+    version = "0.1.SNAPSHOT"
+}
+
+subprojects {
+    apply plugin: 'java'
+
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+
+    task info {
+        doLast {
+            println "========================================================="
+            println "\t project.group = $project.group"
+            println "\t project.name = $project.name"
+            println "\t project.parent = $project.parent.name"
+            println "\t project.version = $project.version"
+            println "========================================================="
+        }
+    }
+
+    repositories {
+        jcenter()
+        mavenCentral()
+    }
+
+    dependencies {
+        compile 'org.slf4j:jcl-over-slf4j:1.7.21'
+        compile 'ch.qos.logback:logback-classic:1.1.7'
+        testCompile 'junit:junit:4.12'
+    }
+}

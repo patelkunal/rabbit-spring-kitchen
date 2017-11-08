@@ -1,0 +1,3 @@
+rootProject.name = 'rabbit-spring-kitchen'
+include 'basic_listener'
+
