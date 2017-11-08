@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.core.MessageListener;
+import org.springframework.amqp.core.MessageProperties;
 
 public class BasicListener implements MessageListener {
 
@@ -11,8 +12,10 @@ public class BasicListener implements MessageListener {
 
     @Override
     public void onMessage(Message message) {
-        LOGGER.info(message.toString());
-        LOGGER.info(new String(message.getBody()));
-        LOGGER.info(message.getMessageProperties().toString());
+        MessageProperties messageProperties = message.getMessageProperties();
+        LOGGER.info("<queue = {}, consumer_tag = {}> {}", messageProperties.getConsumerQueue(), messageProperties.getConsumerTag(),
+                new String(message.getBody()));
+        LOGGER.info("<queue = {}, consumer_tag = {}> {}", messageProperties.getConsumerQueue(), messageProperties.getConsumerTag(),
+                messageProperties.toString());
     }
 }

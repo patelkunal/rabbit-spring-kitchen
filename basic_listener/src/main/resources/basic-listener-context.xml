@@ -10,16 +10,13 @@
 
     <rabbit:admin connection-factory="connectionFactory"/>
 
-    <rabbit:queue id="recipe.01.queue" name="recipe01Queue" auto-delete="true" durable="false"/>
-
-    <!--<rabbit:direct-exchange name="recipe.01.exchange" id="recipe01Exchange">-->
-    <!--<rabbit:bindings>-->
-    <!--<rabbit:binding queue="recipe.01.queue"/>-->
-    <!--</rabbit:bindings>-->
-    <!--</rabbit:direct-exchange>-->
+    <rabbit:queue id="foo.queue" name="foo.queue"/>
+    <!--<rabbit:queue id="foo.queue" name="foo.queue" auto-delete="true" durable="false"/>-->
+    <rabbit:queue id="bar.queue" name="bar.queue"/>
+    <!--<rabbit:queue id="bar.queue" name="bar.queue" auto-delete="true" durable="false"/>-->
 
     <rabbit:listener-container connection-factory="connectionFactory">
-        <rabbit:listener ref="listener" queue-names="recipe01Queue"/>
+        <rabbit:listener ref="listener" queues="foo.queue,bar.queue"/>
     </rabbit:listener-container>
 
     <bean id="listener" class="org.coderearth.rabbitspringkitchen.basiclistener.BasicListener"/>

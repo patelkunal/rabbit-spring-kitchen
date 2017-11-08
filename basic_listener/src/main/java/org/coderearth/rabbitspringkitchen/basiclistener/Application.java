@@ -1,4 +1,4 @@
-package org.coderearth.rabbitspringkitchen.recipe01;
+package org.coderearth.rabbitspringkitchen.basiclistener;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,10 +12,14 @@ public class Application {
     private static final Logger LOGGER = LoggerFactory.getLogger(Application.class);
 
     public static void main(String[] args) {
-        final ApplicationContext applicationContext = new ClassPathXmlApplicationContext("application-context.xml");
-        LOGGER.info(applicationContext.getBean(Queue.class).toString());
+        final ApplicationContext applicationContext = new ClassPathXmlApplicationContext("basic-listener-context.xml");
+        LOGGER.info(applicationContext.getBean("foo.queue", Queue.class).toString());
+        LOGGER.info(applicationContext.getBean("bar.queue", Queue.class).toString());
         LOGGER.info(applicationContext.getBean(ConnectionFactory.class).toString());
-        LOGGER.info(applicationContext.getBean(Recipe01Listner.class).toString());
+        LOGGER.info(applicationContext.getBean(BasicListener.class).toString());
+
+        LOGGER.info("BasicListenerApplication has started !!");
+
     }
 
 }
