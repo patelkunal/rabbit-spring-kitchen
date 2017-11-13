@@ -6,6 +6,9 @@ import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
+
+import java.util.concurrent.ExecutorService;
 
 public class Application {
 
@@ -17,9 +20,10 @@ public class Application {
         LOGGER.info(applicationContext.getBean("bar.queue", Queue.class).toString());
         LOGGER.info(applicationContext.getBean(ConnectionFactory.class).toString());
         LOGGER.info(applicationContext.getBean(BasicListener.class).toString());
+        // final ThreadPoolTaskExecutor executor = applicationContext.getBean(ThreadPoolTaskExecutor.class);
+        // LOGGER.info(executor.toString());
 
         LOGGER.info("BasicListenerApplication has started !!");
-
     }
 
 }

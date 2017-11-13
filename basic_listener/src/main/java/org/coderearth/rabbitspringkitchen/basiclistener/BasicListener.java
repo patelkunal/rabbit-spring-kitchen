@@ -14,8 +14,8 @@ public class BasicListener implements MessageListener {
     public void onMessage(Message message) {
         MessageProperties messageProperties = message.getMessageProperties();
         LOGGER.info("<queue = {}, consumer_tag = {}> {}", messageProperties.getConsumerQueue(), messageProperties.getConsumerTag(),
-                new String(message.getBody()));
-        LOGGER.info("<queue = {}, consumer_tag = {}> {}", messageProperties.getConsumerQueue(), messageProperties.getConsumerTag(),
-                messageProperties.toString());
+                new String(message.getBody()).trim());
+        // LOGGER.info("<queue = {}, consumer_tag = {}> {}", messageProperties.getConsumerQueue(), messageProperties.getConsumerTag(),
+                // messageProperties.toString());
     }
 }

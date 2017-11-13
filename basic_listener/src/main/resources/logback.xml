@@ -6,7 +6,7 @@
 
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
-            <pattern>%d{ISO8601} %green(%5level) %magenta([%20.20t]) %boldCyan(%-50.50logger{39}) : %m%n</pattern>
+            <pattern>%d{ISO8601} %green(%5level) %magenta([%12.12t]) %boldCyan(%-40.40logger{34}) : %m%n</pattern>
         </encoder>
     </appender>
 

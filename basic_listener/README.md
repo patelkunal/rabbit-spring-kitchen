@@ -26,4 +26,6 @@
         - multiple queues can be declared by adding another entry of <rabbit:queue ...>
     * rabbit:listener-container and rabbit:listener
         - final wiring for everything, BRIDGE between MessageListener (callback function) and Queue     
-        - same listener can be used for consuming message from multiple queues
+        - same listener can be used for consuming message from multiple queues but csv list of queues can lead to threading
+          issues since threads are being shared as mentioned here https://stackoverflow.com/questions/32985426/rabbitlistener-container-attributes-shared-or-not)
+        - so its advisable to have another entry of rabbit:listener

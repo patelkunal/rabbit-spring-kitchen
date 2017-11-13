@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:rabbit="http://www.springframework.org/schema/rabbit" xmlns="http://www.springframework.org/schema/beans"
+       xmlns:task="http://www.springframework.org/schema/task"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+                           http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.1.xsd
                            http://www.springframework.org/schema/rabbit http://www.springframework.org/schema/rabbit/spring-rabbit.xsd">
 
     <!--<context:component-scan base-package="org.coderearth.rabbitspringkitchen.recipe01"/>-->
@@ -16,8 +18,17 @@
     <!--<rabbit:queue id="bar.queue" name="bar.queue" auto-delete="true" durable="false"/>-->
 
     <rabbit:listener-container connection-factory="connectionFactory">
-        <rabbit:listener ref="listener" queues="foo.queue,bar.queue"/>
+        <rabbit:listener ref="listener" queues="foo.queue" />
+        <rabbit:listener ref="listener" queues="bar.queue"/>
     </rabbit:listener-container>
+    <!--
+    <rabbit:listener-container task-executor="executor" connection-factory="connectionFactory" concurrency="2">
+        <rabbit:listener ref="listener" queues="foo.queue,bar.queue" />
+        <rabbit:listener ref="listener" queues="bar.queue"/>
+    </rabbit:listener-container>
+
+    <task:executor id="executor" pool-size="5"/>
+     -->
 
     <bean id="listener" class="org.coderearth.rabbitspringkitchen.basiclistener.BasicListener"/>
 </beans>
