@@ -1,4 +1,4 @@
-package org.coderearth.rabbitspringkitchen.basiclistener;
+package org.coderearth.rabbitspringkitchen.concurrentlistener;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,20 +10,20 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 import java.util.concurrent.ExecutorService;
 
-public class Application {
+public class ConcurrentListenerApplication {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(Application.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ConcurrentListenerApplication.class);
 
     public static void main(String[] args) {
-        final ApplicationContext applicationContext = new ClassPathXmlApplicationContext("basic-listener-context.xml");
+        final ApplicationContext applicationContext = new ClassPathXmlApplicationContext("concurrent-listener-context.xml");
         LOGGER.info(applicationContext.getBean("foo.queue", Queue.class).toString());
         LOGGER.info(applicationContext.getBean("bar.queue", Queue.class).toString());
         LOGGER.info(applicationContext.getBean(ConnectionFactory.class).toString());
-        LOGGER.info(applicationContext.getBean(BasicListener.class).toString());
+        LOGGER.info(applicationContext.getBean(ConcurrentListener.class).toString());
         // final ThreadPoolTaskExecutor executor = applicationContext.getBean(ThreadPoolTaskExecutor.class);
         // LOGGER.info(executor.toString());
 
-        LOGGER.info("BasicListenerApplication has started !!");
+        LOGGER.info("ConcurrentListenerApplication has started !!");
     }
 
 }

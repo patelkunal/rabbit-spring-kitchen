@@ -14,4 +14,4 @@ dependencies {
     compile 'org.springframework.amqp:spring-rabbit:2.0.0.RELEASE'
 }
 
-mainClassName = 'org.coderearth.rabbitspringkitchen.basiclistener.BasicListenerApplication'
+mainClassName = 'org.coderearth.rabbitspringkitchen.concurrentlistener.ConcurrentListenerApplication'

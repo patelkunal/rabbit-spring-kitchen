@@ -21,7 +21,6 @@
         <rabbit:listener ref="listener" queues="foo.queue" />
         <rabbit:listener ref="listener" queues="bar.queue"/>
     </rabbit:listener-container>
-
     <!--
     <rabbit:listener-container task-executor="executor" connection-factory="connectionFactory" concurrency="2">
         <rabbit:listener ref="listener" queues="foo.queue,bar.queue" />
@@ -31,5 +30,5 @@
     <task:executor id="executor" pool-size="5"/>
      -->
 
-    <bean id="listener" class="org.coderearth.rabbitspringkitchen.basiclistener.BasicListener"/>
+    <bean id="listener" class="org.coderearth.rabbitspringkitchen.concurrentlistener.ConcurrentListener"/>
 </beans>
