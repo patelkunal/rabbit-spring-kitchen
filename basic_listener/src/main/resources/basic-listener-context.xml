@@ -17,19 +17,12 @@
     <rabbit:queue id="bar.queue" name="bar.queue"/>
     <!--<rabbit:queue id="bar.queue" name="bar.queue" auto-delete="true" durable="false"/>-->
 
+    <!-- by providing another rabbit:listener element, it will just have another consumer for that queue, 
+    no threading issues even though same MessageListener instance is used-->
     <rabbit:listener-container connection-factory="connectionFactory">
         <rabbit:listener ref="listener" queues="foo.queue" />
         <rabbit:listener ref="listener" queues="bar.queue"/>
     </rabbit:listener-container>
-
-    <!--
-    <rabbit:listener-container task-executor="executor" connection-factory="connectionFactory" concurrency="2">
-        <rabbit:listener ref="listener" queues="foo.queue,bar.queue" />
-        <rabbit:listener ref="listener" queues="bar.queue"/>
-    </rabbit:listener-container>
-
-    <task:executor id="executor" pool-size="5"/>
-     -->
 
     <bean id="listener" class="org.coderearth.rabbitspringkitchen.basiclistener.BasicListener"/>
 </beans>
