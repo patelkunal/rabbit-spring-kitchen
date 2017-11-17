@@ -1,3 +1,5 @@
 rootProject.name = 'rabbit-spring-kitchen'
 include 'basic_listener'
 include 'concurrent_listener'
+include 'basic_rpc_service'
+
