@@ -23,10 +23,12 @@ public class BasicRPCService implements MessageListener {
     @Override
     public void onMessage(Message message) {
         MessageProperties messageProperties = message.getMessageProperties();
-        LOGGER.info("<queue = {}, consumer_tag = {}, reply-to = {}, correlation-id = {}, body = {}>",
+        LOGGER.info("<queue = {}, consumer_tag = {}, reply-to = {}, correlation-id = {}, body = {}, operation = {}>",
                 messageProperties.getConsumerQueue(), messageProperties.getConsumerTag(),
                 messageProperties.getReplyTo(), messageProperties.getCorrelationId(),
-                (message.getBody() == null || message.getBody().length == 0) ? "NULL" : new String(message.getBody()).trim());
-        rabbitTemplate.send(messageProperties.getReplyTo(), new Message(message.getBody(), new MessageProperties()));
+                (message.getBody() == null || message.getBody().length == 0) ? "NULL" : new String(message.getBody()).trim(),
+				messageProperties.getHeaders().get("x-rest-verb").toString()
+			);
+		rabbitTemplate.send(messageProperties.getReplyTo(), new Message(message.getBody(), new MessageProperties()));
     }
 }
